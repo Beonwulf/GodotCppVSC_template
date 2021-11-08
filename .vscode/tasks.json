@@ -1,0 +1,46 @@
+{
+
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "build_release",
+            "command": "scons",
+            "args": [
+                "target=release",
+                "platfrom=linux"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "build_debug",
+            "command": "scons",
+            "args": [
+                "target=debug",
+                "platfrom=linux"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build_engine_x64",
+            "dependsOn":["build_engine"],
+            "command": "scons",
+            "args": [
+                "target=debug",
+                "platfrom=linux",
+                "arch=amd64",
+                "-j 8"
+            ],
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceRoot}/Engine"
+              }
+        }
+    ]
+}
